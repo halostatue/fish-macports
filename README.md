@@ -1,12 +1,12 @@
 # halostatue/fish-macports
 
-[![Version][]](https://github.com/halostatue/fish-macports/releases)
+[![Version][version]](https://github.com/halostatue/fish-macports/releases)
 
-Configuration for [MacPorts][] in the [fish shell][].
+Configuration for [MacPorts][macports] in the [fish shell][shell].
 
 ## Installation
 
-Install with [Fisher][]:
+Install with [Fisher][fisher]:
 
 ```fish
 fisher install halostatue/fish-bsrew@v1
@@ -14,14 +14,23 @@ fisher install halostatue/fish-bsrew@v1
 
 ### System Requirements
 
-- [fish][] 3.2+
-- [MacPorts][]
+- [fish][fish] 3.4+
+- [MacPorts][macports]
 
-## Startup Configuration
+## Startup Configuration (`conf.d`)
 
-Adds MacPorts paths to `$PATH`. This uses the `fish_add_path` function
-included with Fish 3.2. This is not set in `$fish_user_paths` because the
-correct order for MacPorts paths is:
+The configuration file for fish-macports will detect the presence of the `port`
+executable (at `/opt/local/bin/port`) and place the MacPorts binary paths in
+`$PATH`.
+
+### `$PATH` Configuration
+
+If `/opt/local/bin` is found in `$fish_user_paths`, `$PATH` configuration will
+be skipped. Note that putting MacPorts paths in `$fish_user_paths` is not
+recommended, as `/opt/local/sbin` may be placed before `/usr/bin`, potentially
+resulting in odd behaviours.
+
+The correct ordering of MacPorts paths with default paths is:
 
 - `/opt/local/bin`
 - `/usr/local/bin`
@@ -32,12 +41,38 @@ correct order for MacPorts paths is:
 - `/usr/sbin`
 - `/sbin`
 
-If `/opt/local/bin` and `/opt/local/sbin` are placed in `$fish_user_paths`,
-then `/opt/local/sbin` would end up being placed _before_ `/usr/bin`, which
-might result in odd behaviours.
+#### Interaction with Homebrew
 
-As a special case, `/opt/homebrew/bin` and `/opt/homebrew/sbin` will be added
-if they exist, after `/opt/local` and before `/usr/local`.
+If the Homebrew `brew` binary is present and `(brew --prefix)/{,s}bin` are in
+`$PATH` (but not in `$fish_user_paths`), this plugin will order the paths
+according to the configuration value `__halostatue_macports_homebrew_order`,
+which should be set as a universal variable.
+
+If unset or `macports`, the paths will be ordered as:
+
+- `/opt/local/bin`
+- `(brew --prefix)/bin`
+- `/usr/local/bin`
+- `/usr/bin`
+- `/bin`
+- `/opt/local/sbin`
+- `(brew --prefix)/sbin`
+- `/usr/local/sbin`
+- `/usr/sbin`
+- `/sbin`
+
+If set to `homebrew`, the paths will be ordered as:
+
+- `(brew --prefix)/bin`
+- `/opt/local/bin`
+- `/usr/local/bin`
+- `/usr/bin`
+- `/bin`
+- `(brew --prefix)/sbin`
+- `/opt/local/sbin`
+- `/usr/local/sbin`
+- `/usr/sbin`
+- `/sbin`
 
 ## Licence
 
@@ -54,7 +89,7 @@ if they exist, after `/opt/local` and before `/usr/local`.
 - [Code of Conduct](./CODE_OF_CONDUCT.md)
 
 [macports]: https://macports.org
-[fish shell]: https://fishshell.com 'friendly interactive shell'
+[shell]: https://fishshell.com 'friendly interactive shell'
 [version]: https://img.shields.io/github/tag/halostatue/fish-brew.svg?label=Version
 [fisher]: https://github.com/jorgebucaran/fisher
 [fish]: https://github.com/fish-shell/fish-shell
