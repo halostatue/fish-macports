@@ -1,4 +1,12 @@
-# fish-brew Changelog
+# fish-macports Changelog
+
+## 1.1.1 / 2025-01-20
+
+- Fixed metadata that referred to the sibling repo,
+  [halostatue/fish-brew][fish-brew].
+
+- Fixed an interaction issue with fisher by no longer having `fish_add_path` at
+  the bottom of the `conf.d` file.
 
 ## 1.1.0 / 2025-01-05
 
@@ -12,3 +20,5 @@
 ## 1.0.0 / 2025-01-02
 
 - Initial version.
+
+[fish-brew]: https://github.com/halostatue/fish-brew

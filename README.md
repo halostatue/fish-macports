@@ -9,7 +9,7 @@ Configuration for [MacPorts][macports] in the [fish shell][shell].
 Install with [Fisher][fisher]:
 
 ```fish
-fisher install halostatue/fish-bsrew@v1
+fisher install halostatue/fish-macports@v1
 ```
 
 ### System Requirements
