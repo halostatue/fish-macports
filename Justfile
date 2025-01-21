@@ -53,7 +53,7 @@ tag version:
         end
     end
 
-    if string match -rq -- '-dirty' (git describe --dirty)
+    if string match -rq -- '-dirty' (git describe --dirty 2>/dev/null)
         echo >&2 "Uncommitted changes are present."
         exit 1
     end
@@ -62,13 +62,13 @@ tag version:
     set minor (string split -f1,2 . {{ version }} | string join .)
 
     if git tag | string match -q v$major
-    git tag -f v$major -m "v$major -> v{{ version }}"
+        git tag -f v$major -m "v$major -> v{{ version }}"
     else
         git tag v$major -m "v$major -> v{{ version }}"
     end
 
     if git tag | string match -q v$minor
-    git tag -f v$minor -m "v$minor -> v{{ version }}"
+        git tag -f v$minor -m "v$minor -> v{{ version }}"
     else
         git tag v$minor -m "v$minor -> v{{ version }}"
     end
@@ -76,7 +76,7 @@ tag version:
     if git tag | string match -q v{{ version }}
         git tag -f v{{ version }}
     else
-    git tag v{{ version }}
+        git tag v{{ version }}
     end
 
 # Format fish files
