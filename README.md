@@ -90,6 +90,6 @@ If set to `homebrew`, the paths will be ordered as:
 
 [macports]: https://macports.org
 [shell]: https://fishshell.com 'friendly interactive shell'
-[version]: https://img.shields.io/github/tag/halostatue/fish-brew.svg?label=Version
+[version]: https://img.shields.io/github/tag/halostatue/fish-macports.svg?label=Version
 [fisher]: https://github.com/jorgebucaran/fisher
 [fish]: https://github.com/fish-shell/fish-shell
