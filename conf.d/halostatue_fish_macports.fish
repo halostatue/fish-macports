@@ -46,7 +46,6 @@ function _halostatue_fish_macports_setup
         end
     end
 
-
     if ! contains -- /opt/local/bin $bin
         set --prepend bin /opt/local/bin
     end
