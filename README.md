@@ -1,6 +1,7 @@
 # halostatue/fish-macports
 
 [![Version][version]](https://github.com/halostatue/fish-macports/releases)
+[![MIT](https://img.shields.io/badge/licence-MIT-blue?style=for-the-badge "MIT")](https://github.com/halostatue/fish-macports/blob/main/LICENCE.md)
 
 Configuration for [MacPorts][macports] in the [fish shell][shell].
 
